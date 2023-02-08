@@ -1,0 +1,45 @@
+﻿@model EShop.ViewModels.ProductViewModel
+
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Save", "Products"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Product.Name)
+        @Html.TextBoxFor(m => m.Product.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Product.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Price) ($)
+        @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Price)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Product.Quantity)
+        @Html.TextBoxFor(m => m.Product.Quantity, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Product.Quantity)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Product.Color)
+        @Html.TextBoxFor(m => m.Product.Color, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Product.Color)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Product.Category)
+        @Html.EnumDropDownListFor(m => m.Product.Category, "Select Category", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Product.Category)
+    </div>
+    @Html.HiddenFor(m => m.Product.Id)
+    @Html.HiddenFor(m => m.Product.Price)
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

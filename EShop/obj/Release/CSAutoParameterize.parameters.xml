@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="EShop-Web.config Connection String" description="EShop Connection String used in web.config by the application to access the database." defaultValue="EShop_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\github\\EShop-MVC\\EShop\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='EShop']/@connectionString" />
+  </parameter>
+</parameters>

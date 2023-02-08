@@ -1,0 +1,22 @@
+﻿@using EShop.Models
+@if ((Customer)Session["Customer"] != null)
+{
+    using (Html.BeginForm("Logout", "User", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hello " + Session["CustomerName"] + "!", "Details", "User", new { id = (int)Session["UserId"] }, null)
+        </li>
+        <li>@Html.ActionLink("Log out", "Logout", "User", null, new {id = "logoutForm"})</li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "User", null, new {id = "registerLink"})</li>
+        <li>@Html.ActionLink("Log in", "Login", "User", null, new {id = "loginLink"})</li>
+    </ul>
+}

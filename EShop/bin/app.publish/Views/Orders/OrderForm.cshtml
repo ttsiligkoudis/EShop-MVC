@@ -1,0 +1,37 @@
+﻿@model EShop.ViewModels.OrderViewModel
+
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+<h3>@Model.Order.Customer.Name</h3>
+@if (!Model.Order.Completed)
+{
+    @Html.ActionLink("Complete this order", "CompleteOrder", new { id = Model.Order.Id }, new { @class = "btn btn-primary" })
+}
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var orderProduct in Model.OrderProducts)
+        {
+            <tr>
+                <td>@orderProduct.Product.Name</td>
+                <td>@orderProduct.Product.Category</td>
+                <td>@orderProduct.ProductPrice $</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

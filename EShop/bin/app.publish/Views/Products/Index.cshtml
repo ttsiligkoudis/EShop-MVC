@@ -1,0 +1,52 @@
+﻿@using EShop.ViewModels
+@model IEnumerable<EShop.Models.Product>
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (Session["UserType"] != null && (short)Session["UserType"] == (short)UserType.Admin)
+{
+    @Html.ActionLink("Create", "Create", "Product", new {@class = "btn btn-primary"})
+}
+@if (!Model.Any())
+{
+    <p><br>You don't have any products registered yet!</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Color</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+            <tr>
+                @if (Session["UserType"] != null && (short)Session["UserType"] == (short)UserType.Admin)
+                {
+                    <td>@Html.ActionLink(product.Name, "Edit", "Products", new { id = product.Id }, null)</td>
+                }
+                else
+                {
+                    <td>@product.Name</td>
+                }
+                <td>@product.Category</td>
+                <td>@product.Color</td>
+                <td>@product.Price $</td>
+                <td>@product.Quantity</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
